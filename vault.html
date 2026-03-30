@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vault | Maacatty Fits</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="vault.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="Logo.png" alt="Maacatty Fits Logo" class="nav-logo">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="lookbook.html">Lookbook</a>
+                <a href="vault.html" class="active">The Vault</a>
+                <a href="craft.html">Our Craft</a>
+            </div>
+            <div class="mobile-menu">
+                <i data-lucide="menu"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="vault-page-content">
+        <div class="vault-container">
+            <header class="vault-intro">
+                <p class="pre-title">Precision Tailoring</p>
+                <h1 class="vault-title">The Vault</h1>
+                <p class="vault-desc">Secure your measurements in our archive for a lifetime of perfect fits.</p>
+            </header>
+
+            <div class="vault-main-layout">
+                <div class="vault-image-column">
+                    <img src="Catty.png" alt="Bespoke Craftsmanship">
+                </div>
+
+               <form class="measurement-form" id="measurementForm">
+                    <div class="form-grid">
+                        <div class="form-section full">
+                            <h3><i data-lucide="user"></i> Client Identity</h3>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Full Name</label>
+                                    <input type="text" placeholder="E.g. John Doe" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" placeholder="+234..." required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section full">
+                            <h3><i data-lucide="ruler"></i> The Blueprint (Inches)</h3>
+                            <div class="input-row qtr">
+                                <div class="input-group">
+                                    <label>Shoulder</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Chest</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Sleeve</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Neck</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                            </div>
+                            <div class="input-row qtr">
+                                <div class="input-group">
+                                    <label>Waist</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Hip</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Length</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Thigh</label>
+                                    <input type="number" step="0.1" placeholder="0.0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" onclick="sendToWhatsApp()" class="btn-primary vault-submit">
+        Secure My Profile
+    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-branding">
+                <img src="Logo.png" alt="Logo" class="footer-logo">
+                <p class="tagline">Bespoke Excellence. Crafted in Enugu.</p>
+            </div>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="lookbook.html">Lookbook</a>
+                <a href="vault.html">The Vault</a>
+                <a href="craft.html">Our Craft</a> 
+            </div>
+            <div class="footer-socials">
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="message-circle"></i></a>
+                <a href="#"><i data-lucide="mail"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Maacatty Fits. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('mobile-active')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+    </script>
+
+    <script>
+function sendToWhatsApp() {
+    // 1. Enter Maacatty's WhatsApp number (with country code, no +)
+    const phoneNumber = "+2348083046264"; // Replace with actual number
+
+    // 2. Get the Client Identity values
+    const name = document.querySelector('input[placeholder="E.g. John Doe"]').value;
+    const phone = document.querySelector('input[placeholder="+234..."]').value;
+
+    // 3. Get the Blueprint values (using labels or nth-child)
+    const inputs = document.querySelectorAll('.measurement-form input[type="number"]');
+    
+    // Create the message header
+    let message = `*New Vault Entry | Maacatty Fits*%0A`;
+    message += `--------------------------%0A`;
+    message += `*Client:* ${name}%0A`;
+    message += `*Phone:* ${phone}%0A%0A`;
+    message += `*Measurements (Inches):*%0A`;
+
+    // Loop through inputs to add them to the message
+    inputs.forEach(input => {
+        const label = input.previousElementSibling.innerText;
+        const val = input.value || "0.0";
+        message += `• ${label}: ${val}%0A`;
+    });
+
+    // 4. Create the final WhatsApp URL
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    // 5. Validation: Ensure name and phone aren't empty
+    if(name && phone) {
+        window.open(whatsappURL, '_blank');
+    } else {
+        alert("Please provide your Name and Phone Number to secure your profile.");
+    }
+}
+</script>
+</body>
+</html>

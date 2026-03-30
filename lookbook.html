@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lookbook | Maacatty Fits</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="lookbook.css">
+</head>
+<body class="lookbook-page bg-maacatty-hero"> 
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="Logo.png" alt="Maacatty Fits Logo" class="nav-logo">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="lookbook.html" class="active">Lookbook</a>
+                <a href="vault.html">The Vault</a>
+                <a href="craft.html">Our Craft</a>
+            </div>
+            <div class="mobile-menu"><i data-lucide="menu"></i></div>
+        </div>
+    </nav>
+
+    <main class="gallery-container">
+        <header class="gallery-intro">
+            <p class="pre-title">2026 Collection</p>
+            <h1 class="gallery-title">The Signature Archive</h1>
+            <p class="gallery-desc">"Exquisite Senator wears and Suits tailored to perfection."</p>
+        </header>
+
+        <div class="masonry-grid">
+            <div class="look-item tall">
+                <img src="Sen1.jpeg" alt="Senator Style">
+                <div class="look-overlay"><span>The Custard Color</span></div>
+            </div>
+            <div class="look-item">
+                <img src="Sen2.jpg" alt="Style">
+                <div class="look-overlay"><span>Ivory Set</span></div>
+            </div>
+            <div class="look-item wide">
+                <img src="sen3.jpg" alt="Style" size: 20px;>
+                <div class="look-overlay"><span>Executive Collection</span></div>
+            </div>
+            <div class="look-item">
+                <img src="up and down.jpg" alt="Style">
+                <div class="look-overlay"><span>Patterned Short-Sleeve Set</span></div>
+            </div>
+            <div class="look-item tall">
+                <img src="Beige Safari-Style Set.JPG" alt="Style">
+                <div class="look-overlay"><span>Beige Safari-Style Set</span></div>
+            </div>
+            <div class="look-item">
+                <img src="Olive Green Senator Suit.JPG" alt="Style">
+                <div class="look-overlay"><span>Olive Green Senator Suit</span></div>
+            </div>
+            <div class="look-item wide">
+                <img src="Olive Short-Sleeve Tunic.JPG" alt="Style">
+                <div class="look-overlay"><span>Olive Short-Sleeve Tunic</span></div>
+            </div>
+            <div class="look-item">
+                <img src="Black Textured Kaftan.JPG" alt="Style">
+                <div class="look-overlay"><span>Black Textured Kaftan</span></div>
+            </div>
+            <div class="look-item tall">
+                <img src="White Graphic Print Kaftan.JPG" alt="Style">
+                <div class="look-overlay"><span>White Graphic Print Kaftan</span></div>
+            </div>
+            <div class="look-item">
+                <img src="Burgundy Short-Sleeve Set.JPG" alt="Style">
+                <div class="look-overlay"><span>Burgundy Short-Sleeve Set</span></div>
+            </div>
+            <div class="look-item">
+                <img src="Dark Green Double-Breasted Suit.jpeg" alt="Style">
+                <div class="look-overlay"><span>Dark Green Double-Breasted Suit</span></div>
+            </div>
+            <div class="look-item">
+                <img src="Blue High-Neck Tunic.jpeg" alt="Style">
+                <div class="look-overlay"><span>Blue High-Neck Tunic</span></div>
+            </div>
+        </div>
+        
+        <div class="gallery-footer-action">
+            <a href="index.html#vault" class="btn-primary">Book Your Fitting</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <img src="Logo.png" alt="Logo" class="footer-logo">
+            <p class="bespoke-text">BESPOKE EXCELLENCE. CRAFTED IN ENUGU.</p>
+        </div>
+
+        <div class="footer-nav">
+            <a href="index.html">HOME</a>
+            <a href="lookbook.html">LOOKBOOK</a>
+            <a href="vault.html">THE VAULT</a>
+            <a href="craft.html">OUR CRAFT</a>
+        </div>
+
+        <div class="footer-socials">
+            <a href="#"><i data-lucide="message-circle"></i></a>
+            <a href="#"><i data-lucide="mail"></i></a>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2026 MAACATTY FITS. ALL RIGHTS RESERVED.</p>
+    </div>
+</footer>
+
+    <script>lucide.createIcons();</script>
+
+    <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Hamburger Menu Logic
+    const mobileMenuBtn = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        // Toggle the "active" class on the links
+        navLinks.classList.toggle('mobile-active');
+        
+        // Optional: Change the icon from menu to 'X'
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navLinks.classList.contains('mobile-active')) {
+            icon.setAttribute('data-lucide', 'x');
+        } else {
+            icon.setAttribute('data-lucide', 'menu');
+        }
+        lucide.createIcons(); // Refresh icons
+    });
+</script>
+</body>
+</html>

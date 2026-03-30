@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maacatty Fits | Bespoke Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="Logo.png" alt="Maacatty Fits Logo" class="nav-logo">
+            
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="lookbook.html">Lookbook</a>
+                <a href="vault.html">The Vault</a>
+                <a href="craft.html">Our Craft</a>
+            </div>
+            
+            <div class="mobile-menu">
+                <i data-lucide="menu"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Maacatty Fits</h1>
+                <p class="hero-subtitle">Your Vision, Our Craft.</p>
+                <p class="hero-description">
+                    "Exquisite Senator wears and Suits tailored to perfection. Designed for the modern African gentleman."
+                </p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i data-lucide="tag" class="icon"></i>
+                        <h3>Choose Signature</h3>
+                        <p>Browse our lookbook and select a style.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="pen-tool" class="icon"></i>
+                        <h3>Digital Fitting</h3>
+                        <p>Enter measurements into The Vault.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="package" class="icon"></i>
+                        <h3>Handcrafted</h3>
+                        <p>Your garment delivered to your doorstep.</p>
+                    </div>
+                </div>
+
+                <a href="#vault" class="btn-primary">Book a Fitting</a>
+            </div>
+
+            <div class="hero-image">
+                <img src="Catty.png" alt="Maacatty Senator Model">
+            </div>
+        </div>
+    </section>
+
+    
+
+    <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-branding">
+            <img src="Logo.png" alt="Logo" class="footer-logo">
+            <p class="tagline">Bespoke Excellence. Crafted in Enugu.</p>
+        </div>
+
+        <div class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="lookbook.html">Lookbook</a>
+            <a href="vault.html">The Vault</a>
+            <a href="craft.html">Our Craft</a> </div>
+
+        <div class="footer-socials">
+            <a href="#"><i data-lucide="instagram"></i></a>
+            <a href="#"><i data-lucide="message-circle"></i></a>
+            <a href="#"><i data-lucide="mail"></i></a>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2026 Maacatty Fits. All Rights Reserved.</p>
+    </div>
+</footer>
+
+    <script>
+      lucide.createIcons();
+    </script>
+
+
+
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Hamburger Menu Logic
+    const mobileMenuBtn = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        // Toggle the "active" class on the links
+        navLinks.classList.toggle('mobile-active');
+        
+        // Optional: Change the icon from menu to 'X'
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navLinks.classList.contains('mobile-active')) {
+            icon.setAttribute('data-lucide', 'x');
+        } else {
+            icon.setAttribute('data-lucide', 'menu');
+        }
+        lucide.createIcons(); // Refresh icons
+    });
+</script>
+</body>
+</html>
