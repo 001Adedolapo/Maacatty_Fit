@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Vault | Maacatty Fits</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <script src="https://unpkg.com/lucide@latest"></script>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="vault.css">
 </head>
@@ -96,12 +100,19 @@
                         </div>
                     </div>
                     <button type="button" onclick="sendToWhatsApp()" class="btn-primary vault-submit">
-        Secure My Profile
-    </button>
+                        Secure My Profile
+                    </button>
                 </form>
             </div>
         </div>
     </main>
+
+    <div class="marquee">
+    <div class="marquee-content">
+        <span>LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED — LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED —</span>
+        <span>LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED — LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED —</span>
+    </div>
+</div>
 
     <footer class="footer">
         <div class="footer-container">
@@ -116,9 +127,12 @@
                 <a href="craft.html">Our Craft</a> 
             </div>
             <div class="footer-socials">
-                <a href="#"><i data-lucide="instagram"></i></a>
-                <a href="#"><i data-lucide="message-circle"></i></a>
-                <a href="#"><i data-lucide="mail"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="tel:+2348083046264" title="Call Us"><i class="fa-solid fa-phone"></i></a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -127,58 +141,60 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+        window.addEventListener('load', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+
         const mobileMenuBtn = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('mobile-active');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('mobile-active')) {
-                icon.setAttribute('data-lucide', 'x');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('mobile-active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navLinks.classList.contains('mobile-active')) {
+                    icon.setAttribute('data-lucide', 'x');
+                } else {
+                    icon.setAttribute('data-lucide', 'menu');
+                }
+                lucide.createIcons();
+            });
+        }
+
+        function sendToWhatsApp() {
+            // WhatsApp number (Numbers only, no + sign for the link)
+            const phoneNumber = "2348083046264"; 
+
+            const nameInput = document.querySelector('input[placeholder="E.g. John Doe"]');
+            const phoneInput = document.querySelector('input[placeholder="+234..."]');
+            
+            const name = nameInput.value;
+            const phone = phoneInput.value;
+
+            const inputs = document.querySelectorAll('.measurement-form input[type="number"]');
+            
+            let message = `*New Vault Entry | Maacatty Fits*%0A`;
+            message += `--------------------------%0A`;
+            message += `*Client:* ${name}%0A`;
+            message += `*Phone:* ${phone}%0A%0A`;
+            message += `*Measurements (Inches):*%0A`;
+
+            inputs.forEach(input => {
+                const label = input.previousElementSibling.innerText;
+                const val = input.value || "0.0";
+                message += `• ${label}: ${val}%0A`;
+            });
+
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            if(name && phone) {
+                window.open(whatsappURL, '_blank');
             } else {
-                icon.setAttribute('data-lucide', 'menu');
+                alert("Please provide your Name and Phone Number to secure your profile.");
             }
-            lucide.createIcons();
-        });
+        }
     </script>
-
-    <script>
-function sendToWhatsApp() {
-    // 1. Enter Maacatty's WhatsApp number (with country code, no +)
-    const phoneNumber = "+2348083046264"; // Replace with actual number
-
-    // 2. Get the Client Identity values
-    const name = document.querySelector('input[placeholder="E.g. John Doe"]').value;
-    const phone = document.querySelector('input[placeholder="+234..."]').value;
-
-    // 3. Get the Blueprint values (using labels or nth-child)
-    const inputs = document.querySelectorAll('.measurement-form input[type="number"]');
-    
-    // Create the message header
-    let message = `*New Vault Entry | Maacatty Fits*%0A`;
-    message += `--------------------------%0A`;
-    message += `*Client:* ${name}%0A`;
-    message += `*Phone:* ${phone}%0A%0A`;
-    message += `*Measurements (Inches):*%0A`;
-
-    // Loop through inputs to add them to the message
-    inputs.forEach(input => {
-        const label = input.previousElementSibling.innerText;
-        const val = input.value || "0.0";
-        message += `• ${label}: ${val}%0A`;
-    });
-
-    // 4. Create the final WhatsApp URL
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-
-    // 5. Validation: Ensure name and phone aren't empty
-    if(name && phone) {
-        window.open(whatsappURL, '_blank');
-    } else {
-        alert("Please provide your Name and Phone Number to secure your profile.");
-    }
-}
-</script>
 </body>
 </html>

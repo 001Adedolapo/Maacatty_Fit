@@ -10,9 +10,10 @@ body {
     color: #1a1a1a;
     line-height: 1.6;
     overflow-x: hidden;
+    background: #ffffff; /* Explicitly set base background to white */
 }
 
-/* NAVBAR */
+/* NAVBAR - Kept exactly as your original */
 .navbar {
     position: fixed;
     width: 100%;
@@ -56,46 +57,122 @@ body {
 
 .nav-links a:hover { color: #2563eb; }
 
-/* HAMBURGER - Hidden on Desktop */
+/* HAMBURGER */
 .mobile-menu {
     display: none;
     cursor: pointer;
     color: #1a1a1a;
 }
 
-/* HERO SECTION */
+/* --- UPDATED HERO SECTION --- */
 .hero {
+    position: relative; /* REQUIRED for the absolute dots to seat correctly */
     min-height: 100vh;
-    background: linear-gradient(180deg, #D8E5F3 0%, #FFFFFF 100%);
     display: flex;
-    align-items: center;
-    padding-top: 100px;
+    flex-direction: column;
+    padding-top: 100px; 
+    background: #ffffff;
+    overflow: hidden;
+}
+
+/* The Sliding Track - FIXED TO SHOW FULL IMAGE */
+.hero-slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* Controlled height so images aren't too big */
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.slider-track {
+    position: relative;
+    display: flex;
+    width: 800%; 
+    height: 100%;
+    z-index: 1;
+    transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.slide {
+    width: 12.5%; 
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* Changed from contain to fill the screen width */
+}
+
+/* --- FIXED SLIDER BUTTONS (DOTS) --- */
+.slider-dots {
+    position: absolute;
+    bottom: 20px; /* Locked to bottom of the slider wrapper */
+    top: auto;    /* Removed the calc line entirely */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 100; /* Ensure they stay on top of images */
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4); /* Made lighter for visibility on images */
+    border: 2px solid #fff; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #E67E22;
+    width: 25px;
+    border-radius: 5px;
+}
+
+/* Container now sits correctly below the slider on the white background */
+.hero-overlay {
+    padding: 60px 0;
+    width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
 .hero-container {
+    position: relative;
+    z-index: 10;
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 50px;
-    padding: 40px 20px;
+    padding: 0 20px;
 }
 
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-style: italic;
     margin-bottom: 15px;
     line-height: 1.1;
+    color: #1a1a1a; 
 }
 
 .hero-subtitle {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.3em;
-    color: #4b5563;
+    color: #E67E22;
     margin-bottom: 20px;
+}
+
+.hero-description {
+    color: #4b5563;
+    margin-bottom: 30px;
 }
 
 /* CARDS */
@@ -107,20 +184,18 @@ body {
 }
 
 .feature-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     padding: 25px;
     border-top: 8px solid #E67E22;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
     transition: transform 0.3s ease;
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
-}
-
+.feature-card:hover { transform: translateY(-5px); }
 .feature-card .icon { color: #E67E22; margin-bottom: 10px; }
-.feature-card h3 { font-size: 13px; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; }
-.feature-card p { font-size: 11px; color: #6b7280; font-weight: 600; }
+.feature-card h3 { font-size: 13px; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; color: #1a1a1a; }
+.feature-card p { font-size: 11px; color: #4b5563; font-weight: 600; }
 
 .btn-primary {
     display: inline-block;
@@ -140,25 +215,35 @@ body {
     transform: scale(1.02);
 }
 
+/* Purple Man Image */
 .hero-image img {
     width: 100%;
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1)); 
 }
 
-/* FOOTER */
+/* --- REPAIRED FOOTER SECTION --- */
 .footer {
     background: #f9fafb;
     border-top: 1px solid #e5e7eb;
-    padding: 40px 0 20px 0;
+    padding: 60px 0 30px 0;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 30px;
     padding: 0 20px;
+    text-align: center;
+}
+
+.footer-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-logo { height: 70px; margin-bottom: 10px; }
@@ -171,25 +256,52 @@ body {
     letter-spacing: 0.2em;
 }
 
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
 .footer-nav a {
     text-decoration: none;
     color: #000;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 12px;
-    margin: 0 15px;
     transition: color 0.3s ease;
 }
 
-.footer-nav a:hover { color: #E67E22; }
+/* SOCIALS */
+.footer-socials {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 25px !important;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
 
-.footer-socials a { color: #000; margin-left: 20px; transition: color 0.3s ease; }
-.footer-socials a:hover { color: #E67E22; }
+.footer-socials a { 
+    color: #1a1a1a !important; 
+    transition: all 0.3s ease;
+    display: inline-flex !important;
+    text-decoration: none !important;
+}
+
+.footer-socials a i { 
+    font-size: 26px !important; 
+    color: #1a1a1a !important; 
+}
+
+.footer-socials a:hover i { 
+    color: #E67E22 !important; 
+    transform: translateY(-3px);
+}
 
 .footer-bottom {
     max-width: 1200px;
-    margin: 30px auto 0;
-    padding-top: 20px;
+    margin: 40px auto 0;
+    padding: 20px 20px 0;
     border-top: 1px solid #e5e7eb;
     text-align: center;
 }
@@ -198,50 +310,11 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
-    .mobile-menu {
-        display: block; /* Hamburger shows up only now */
-    }
-
+    .mobile-menu { display: block; z-index: 1001; }
     .nav-links {
-        display: none; /* Desktop links hide on mobile */
-    }
-
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-
-    .footer-socials a {
-        margin: 0 10px;
-    }
-
-    @media (max-width: 1024px) {
-    .mobile-menu { 
-        display: block; 
-        z-index: 1001; 
-    }
-
-    .nav-links {
-        display: none; /* Hide by default on mobile */
+        display: none;
         position: absolute;
-        top: 100%; /* Sits right under the nav */
+        top: 100%;
         left: 0;
         width: 100%;
         background: white;
@@ -250,33 +323,41 @@ body {
         border-bottom: 2px solid #E67E22;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
+    .nav-links.mobile-active { display: flex; }
+    .nav-links a { margin: 15px 0; font-size: 18px; text-align: center; width: 100%; margin-left: 0; }
 
-    /* This class gets toggled by the JS */
-    .nav-links.mobile-active {
-        display: flex; 
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .feature-grid { grid-template-columns: 1fr; width: 100%; }
+    .hero-image { order: -1; }
+    
+    .hero-slider-wrapper { height: 50vh; } 
+    
+    .slider-dots {
+        top: auto;
+        bottom: 10px;
     }
-
-    .nav-links a {
-        margin: 15px 0;
-        font-size: 18px; /* Bigger for easy tapping */
-        text-align: center;
-        width: 100%;
-    }
-}
 }
 
-.footer-nav a {
-    text-decoration: none;
-    color: #000;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 12px;
-    margin: 0 10px; /* Reduced from 15px to fit all 4 comfortably */
-    transition: color 0.3s ease;
+@media (min-width: 1025px) {
+    .footer-container { flex-direction: row; justify-content: space-between; text-align: left; }
+    .footer-branding { align-items: flex-start; }
 }
 
-.footer-nav a:hover {
-    color: #E67E22;
+/* --- SCROLL PROGRESS BAR --- */
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 2000; /* Stays above the navbar */
 }
 
+.scroll-progress-bar {
+    height: 100%;
+    background: #E67E22; /* Your brand orange */
+    width: 0%;
+    transition: width 0.1s ease-out;
+}
 

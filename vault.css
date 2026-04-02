@@ -124,11 +124,91 @@
 .vault-submit {
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 50px; /* Added spacing to avoid touching footer */
     cursor: pointer;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE UPDATES */
 @media (max-width: 768px) {
-    .measurement-form { padding: 30px 20px; }
-    .input-row, .input-row.qtr { grid-template-columns: 1fr 1fr; }
+    .measurement-form { 
+        padding: 30px 20px; 
+    }
+    
+    /* This fix ensures inputs stack vertically on mobile */
+    .input-row, .input-row.qtr { 
+        grid-template-columns: 1fr !important; 
+        gap: 15px;
+    }
+
+    .vault-page-content {
+        padding-top: 100px; /* Moves content down so it's not hidden by navbar */
+    }
+
+    .input-group input {
+        font-size: 16px; /* Prevents auto-zoom on mobile */
+    }
+}
+
+/* --- FONT AWESOME SOCIALS STYLE --- */
+.footer-socials {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 25px !important;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.footer-socials a { 
+    text-decoration: none !important;
+    transition: transform 0.3s ease;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-socials a i { 
+    font-size: 26px !important; /* Forces the size */
+    color: #1a1a1a !important;  /* Forces the color to deep black */
+}
+
+.footer-socials a:hover { 
+    transform: translateY(-5px);
+}
+
+.footer-socials a:hover i {
+    color: #E67E22 !important; /* Maacatty Orange on hover */
+}
+
+/* Rest of your existing CSS remains the same below */
+
+/* --- INFINITE MARQUEE --- */
+.marquee {
+    width: 100%;
+    background: #1a1a1a; /* Sleek black background */
+    color: #ffffff;
+    padding: 15px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    padding-right: 50px;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }

@@ -89,7 +89,86 @@
     font-weight: 500;
 }
 
+/* --- REPAIRED FOOTER SECTION (Synced with style.css) --- */
+.footer {
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    padding: 60px 0 30px 0;
+    margin-top: 80px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    align-items: center;
+    gap: 30px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-logo { height: 70px; margin-bottom: 10px; }
+
+.tagline {
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 0.2em;
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-socials a i, 
+.footer-socials a svg { 
+    width: 24px !important; 
+    height: 24px !important; 
+    color: #000;
+}
+
+.footer-socials a:hover i { color: #E67E22; }
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 20px 20px 0;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.footer-bottom p { font-size: 10px; font-weight: 900; text-transform: uppercase; }
+
 /* RESPONSIVE */
+@media (min-width: 1025px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
 @media (max-width: 768px) {
     .craft-steps-grid {
         grid-template-columns: 1fr;
@@ -97,4 +176,285 @@
     .step-card {
         padding: 40px 30px;
     }
+    .craft-page-content {
+        padding-top: 120px;
+    }
+}
+
+/* --- FONT AWESOME SOCIALS STYLE --- */
+.footer-socials {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 25px !important;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.footer-socials a { 
+    text-decoration: none !important;
+    transition: transform 0.3s ease;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-socials a i { 
+    font-size: 26px !important; /* Forces the size */
+    color: #1a1a1a !important;  /* Forces the color to deep black */
+}
+
+.footer-socials a:hover { 
+    transform: translateY(-5px);
+}
+
+.footer-socials a:hover i {
+    color: #E67E22 !important; /* Maacatty Orange on hover */
+}
+
+/* Rest of your existing CSS remains the same below */
+
+/* --- THE VAULT EXCLUSIVITY --- */
+.vault-item img {
+    filter: grayscale(100%); /* Makes it look like a classic archive */
+    transition: filter 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s ease;
+}
+
+.vault-item:hover img {
+    filter: grayscale(0%); /* Bursts into color on hover */
+    transform: scale(1.03);
+}
+
+.vault-item::after {
+    content: "ARCHIVE NO. 0042";
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 10px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.vault-item:hover::after {
+    opacity: 1;
+}
+
+.craft-detail-section {
+    background-image: 
+        linear-gradient(rgba(230, 126, 34, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230, 126, 34, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px; /* Creates a subtle designer grid */
+}
+
+/* --- EDITORIAL SECTION --- */
+.editorial-section {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.editorial-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 80px;
+    padding: 0 40px;
+}
+
+.editorial-image {
+    flex: 1;
+    position: sticky;
+    top: 150px;
+    height: 80vh;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.editorial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(20%) contrast(110%); /* High-fashion photo filter */
+}
+
+.image-overlay-tag {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: rgba(0,0,0,0.3);
+    padding: 5px 15px;
+    backdrop-filter: blur(5px);
+}
+
+.editorial-content {
+    flex: 1;
+    padding: 100px 0;
+}
+
+.editorial-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin: 20px 0 40px;
+    font-style: italic;
+}
+
+.editorial-text {
+    font-size: 1.1rem;
+    color: #4b5563;
+    line-height: 2;
+    margin-bottom: 50px;
+    max-width: 500px;
+}
+
+/* CRAFT SPECS TABLE */
+.craft-specs {
+    border-top: 1px solid #eee;
+    margin-bottom: 50px;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.spec-label {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+.spec-value {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+/* MINIMAL BUTTON */
+.btn-minimal {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #E67E22;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-minimal:hover {
+    color: #E67E22;
+    padding-left: 10px;
+}
+
+/* Mobile Fix */
+@media (max-width: 1024px) {
+    .editorial-container { flex-direction: column; }
+    .editorial-image { position: relative; top: 0; height: 50vh; }
+    .editorial-content { padding: 40px 0; }
+    .editorial-title { font-size: 2.5rem; }
+}
+
+/* Update your existing editorial-section class */
+.editorial-section {
+    padding: 160px 0; /* Increased top/bottom padding for a luxury feel */
+    background: #fff;
+    margin-bottom: 80px; /* This creates the gap between the story and the 01-04 cards */
+}
+
+.editorial-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 80px;
+    padding: 0 40px;
+    align-items: center; /* This aligns the text and image better */
+}
+
+/* Fix for the Archive tag floating in white space */
+.editorial-image {
+    flex: 1.2; /* Makes the image slightly larger than the text area */
+    position: relative;
+    height: 600px; /* Fixed height so it fills that white space */
+    background: #f9f9f9; /* Subtle placeholder color */
+}
+
+/* Add this to the section containing your 01-04 cards */
+.process-section {
+    padding-top: 100px;
+    margin-top: 50px;
+}
+
+/* --- THE VAULT HOVER EFFECT --- */
+.vault-card {
+    position: relative;
+    overflow: hidden;
+    background: #000; /* Dark base for the image */
+}
+
+.vault-card img {
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0.8;
+    filter: grayscale(100%) contrast(120%);
+}
+
+/* The 'Scan Line' effect */
+.vault-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(230, 126, 34, 0.2), transparent);
+    transition: none;
+}
+
+.vault-card:hover img {
+    opacity: 1;
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.05);
+}
+
+.vault-card:hover::after {
+    top: 100%;
+    transition: all 1.5s ease;
+}
+
+.editorial-container {
+    display: flex;             /* Forces text and video to be side-by-side */
+    align-items: center;      /* Centers them vertically */
+    justify-content: space-between; /* Pushes them to the edges of the white box */
+    max-width: 1200px;        /* Keeps it within the 'white line' area */
+    margin: 0 auto;           /* Centers the whole container on the page */
+    gap: 50px;                /* Creates a gap between text and video */
+    padding: 60px 40px;       /* Adds breathing room inside the white area */
+    background: #fff;         /* Ensures the background is white */
+}
+
+.editorial-content {
+    flex: 1;                  /* Tells the text to take up half the space */
+}
+
+.editorial-image {
+    flex: 1;                  /* Tells the video to take up the other half */
+    max-width: 500px;         /* Prevents the video from getting too big */
+    height: 600px;            /* Gives it a professional vertical shape */
+    overflow: hidden;
+}
+
+.craft-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* Ensures the video fills its box perfectly */
 }

@@ -1,6 +1,6 @@
 /* =========================================
-   1. RESET & BRAND FOUNDATION
-   ========================================= */
+    1. RESET & BRAND FOUNDATION
+    ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -16,8 +16,8 @@ body {
 }
 
 /* =========================================
-   2. NAVBAR (Fixed Glassmorphism)
-   ========================================= */
+    2. NAVBAR (Fixed Glassmorphism)
+    ========================================= */
 .navbar {
     position: fixed;
     width: 100%;
@@ -61,8 +61,8 @@ body {
 .mobile-menu { display: none; cursor: pointer; color: #1a1a1a; }
 
 /* =========================================
-   3. GALLERY HEADER
-   ========================================= */
+    3. GALLERY HEADER
+    ========================================= */
 .gallery-container {
     padding-top: 150px;
     max-width: 1400px;
@@ -94,8 +94,8 @@ body {
 .gallery-desc { color: #4b5563; font-weight: 600; }
 
 /* =========================================
-   4. MASONRY GRID LOGIC
-   ========================================= */
+    4. MASONRY GRID LOGIC
+    ========================================= */
 .masonry-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -111,6 +111,9 @@ body {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    /* Touch optimization */
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .look-item img {
@@ -145,12 +148,16 @@ body {
     padding: 10px 20px;
 }
 
-.look-item:hover img { transform: scale(1.1); }
-.look-item:hover .look-overlay { opacity: 1; }
+/* Updated Hover & Touch Trigger */
+.look-item:hover img,
+.look-item:active img { transform: scale(1.1); }
+
+.look-item:hover .look-overlay,
+.look-item:active .look-overlay { opacity: 1; }
 
 /* =========================================
-   5. BUTTONS & UPDATED FOOTER (Matches style.css)
-   ========================================= */
+    5. BUTTONS & REPAIRED FOOTER
+    ========================================= */
 .gallery-footer-action { text-align: center; margin-top: 60px; }
 
 .btn-primary {
@@ -174,7 +181,7 @@ body {
 .footer {
     background: #f9fafb;
     border-top: 1px solid #e5e7eb;
-    padding: 40px 0 20px 0;
+    padding: 60px 0 30px 0;
     margin-top: 100px;
 }
 
@@ -182,9 +189,11 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 30px;
     padding: 0 20px;
+    text-align: center;
 }
 
 .footer-logo { height: 70px; margin-bottom: 10px; }
@@ -197,25 +206,46 @@ body {
     letter-spacing: 0.2em;
 }
 
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
 .footer-nav a {
     text-decoration: none;
     color: #000;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 12px;
-    margin: 0 10px;
     transition: color 0.3s ease;
 }
 
-.footer-nav a:hover { color: #E67E22; }
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-.footer-socials a { color: #000; margin-left: 20px; transition: color 0.3s ease; }
+.footer-socials a { 
+    color: #000; 
+    transition: color 0.3s ease; 
+}
+
+.footer-socials a i, 
+.footer-socials a svg { 
+    width: 24px !important; 
+    height: 24px !important; 
+}
+
 .footer-socials a:hover { color: #E67E22; }
 
 .footer-bottom {
     max-width: 1200px;
-    margin: 30px auto 0;
-    padding-top: 20px;
+    margin: 40px auto 0;
+    padding: 20px 20px 0;
     border-top: 1px solid #e5e7eb;
     text-align: center;
 }
@@ -223,8 +253,16 @@ body {
 .footer-bottom p { font-size: 10px; font-weight: 900; text-transform: uppercase; }
 
 /* =========================================
-   6. RESPONSIVE
-   ========================================= */
+    6. RESPONSIVE
+    ========================================= */
+@media (min-width: 1025px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
 @media (max-width: 1024px) {
     .mobile-menu { 
         display: block; 
@@ -253,17 +291,163 @@ body {
         width: 100%;
         margin-left: 0;
     }
-
-    .footer-container {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-
-    .footer-socials a { margin: 0 10px; }
 }
 
 @media (max-width: 768px) {
-    .masonry-grid { grid-template-columns: 1fr; grid-auto-rows: 400px; }
+    .masonry-grid { 
+        grid-template-columns: 1fr; 
+        grid-auto-rows: auto; 
+    }
     .look-item.wide, .look-item.featured { grid-column: span 1; }
+    
+    .look-item {
+        height: 400px; 
+    }
+}
+
+/* --- FONT AWESOME SOCIALS STYLE --- */
+.footer-socials {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 25px !important;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.footer-socials a { 
+    text-decoration: none !important;
+    transition: transform 0.3s ease;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-socials a i { 
+    font-size: 26px !important; 
+    color: #1a1a1a !important; 
+}
+
+.footer-socials a:hover { 
+    transform: translateY(-5px);
+}
+
+.footer-socials a:hover i {
+    color: #E67E22 !important; 
+}
+
+/* MOBILE TOUCH UPDATE: Ensures hover behavior on devices without a mouse */
+@media (hover: none) {
+    .look-item:active .look-overlay {
+        opacity: 1;
+    }
+    .look-item:active img {
+        transform: scale(1.05);
+    }
+}
+
+/* =========================================
+   7. NEWSLETTER SECTION (PRE-FOOTER)
+   ========================================= */
+.newsletter-section {
+    background: #ffffff;
+    padding: 100px 20px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.newsletter-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.newsletter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-style: italic;
+    margin: 20px 0 40px;
+    color: #1a1a1a;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 5px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 14px;
+}
+
+.newsletter-btn {
+    background: transparent;
+    border: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #E67E22;
+    cursor: pointer;
+    padding: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.newsletter-btn:hover {
+    color: #1a1a1a;
+}
+
+/* Responsive Newsletter */
+@media (max-width: 600px) {
+    .newsletter-section {
+        padding: 60px 20px;
+    }
+    .newsletter-form {
+        flex-direction: column;
+        border-bottom: none;
+        gap: 20px;
+    }
+    .newsletter-form input {
+        border-bottom: 2px solid #1a1a1a;
+        text-align: center;
+    }
+}
+
+/* --- INFINITE MARQUEE --- */
+.marquee {
+    width: 100%;
+    background: #1a1a1a; /* Sleek black background */
+    color: #ffffff;
+    padding: 15px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    padding-right: 50px;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
