@@ -458,3 +458,19 @@
     height: 100%;
     object-fit: cover;        /* Ensures the video fills its box perfectly */
 }
+
+.editorial-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the content horizontally */
+    max-width: 1200px;        /* Limits the width so it stays in the 'center lane' */
+    margin: 0 auto !important; /* Forces the whole box to the middle of the screen */
+    gap: 60px;
+    padding: 80px 40px;
+}
+
+/* Ensure the text side doesn't stretch too far left */
+.editorial-content {
+    flex: 1;
+    text-align: left; /* Keeps text left-aligned, but the BOX stays centered */
+}

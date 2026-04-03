@@ -361,3 +361,100 @@ body {
     transition: width 0.1s ease-out;
 }
 
+/* --- FIX: PUSH SLIDER BELOW HEADER --- */
+
+/* 1. Add top padding to the body so content starts AFTER the header */
+body {
+    padding-top: 100px !important; /* Adjust this value if your header is taller */
+}
+
+/* 2. Push the Hero/Slider section specifically to ensure it clears */
+.hero, 
+.hero-slider-wrapper {
+    margin-top: 0 !important;
+    padding-top: 20px !important; /* Adds a small gap so it's not touching the header */
+}
+
+/* 3. Ensure the Vault page also stays clear */
+.vault-page-content {
+    padding-top: 120px !important;
+}
+
+/* 4. Mobile adjustment */
+@media (max-width: 768px) {
+    body {
+        padding-top: 80px !important;
+    }
+    .vault-page-content {
+        padding-top: 100px !important;
+    }
+}
+
+/* 1. RESET BODY - This snaps the header back to the absolute top */
+body {
+    padding-top: 0 !important;
+}
+
+/* 2. FORCE NAVBAR TO THE TOP - Ensures it stays fixed at 0 */
+.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 2000 !important;
+    height: 100px !important; /* Matches your logo height + padding */
+}
+
+/* 3. PUSH CONTENT DOWN - This moves the images without moving the header */
+.hero, 
+.hero-slider-wrapper, 
+.vault-page-content,
+.main-content {
+    margin-top: 100px !important; /* Creates the gap where the header sits */
+    padding-top: 0 !important;
+}
+
+/* 4. MOBILE SPACING - Adjusts for smaller screens */
+@media (max-width: 768px) {
+    .navbar {
+        height: 80px !important;
+    }
+    
+    .hero, 
+    .hero-slider-wrapper, 
+    .vault-page-content {
+        margin-top: 80px !important;
+    }
+}
+
+/* 5. DOTS FIX - Ensures they stay visible on the sliding images */
+.slider-dots {
+    bottom: 30px !important;
+    z-index: 100 !important;
+}
+
+/* --- SIMPLE PUSH DOWN: NO SIZE CHANGES --- */
+
+/* This pushes the images down so they start AFTER the header ends */
+.hero, 
+.hero-slider-wrapper {
+    margin-top: 120px !important; 
+    padding-top: 0 !important;
+}
+
+/* This keeps the header at the very top so it doesn't move with the images */
+.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 2000 !important;
+}
+
+/* Mobile push adjustment */
+@media (max-width: 768px) {
+    .hero, 
+    .hero-slider-wrapper {
+        margin-top: 90px !important;
+    }
+}
