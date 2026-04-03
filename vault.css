@@ -413,6 +413,45 @@ body {
     .footer-branding { align-items: flex-start; }
 }
 
+/* --- VAULT FORM ALIGNMENT & RESPONSIVENESS --- */
+
+.vault-page-content {
+    max-width: 600px; /* Centers the form on the screen */
+    margin: 0 auto !important;
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers all labels and inputs */
+}
+
+.vault-page-content label {
+    width: 100%;
+    text-align: left;
+    margin-top: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #1a1a1a;
+}
+
+.vault-page-content input {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 15px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px; /* Prevents iOS zoom-in on focus */
+    background: #f9f9f9;
+}
+
+/* Fix for mobile cutting off */
+@media (max-width: 768px) {
+    .vault-page-content {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
 /* --- SECURE MY PROFILE BUTTON STYLING --- */
 
 .vault-page-content button,
@@ -421,7 +460,7 @@ body {
     width: 100%;
     max-width: 400px; /* Keeps it from stretching too wide on desktop */
     margin: 30px auto;
-    background: #1a1a1a; /* Matches your base text color */
+    background: orange; /* Matches your base text color */
     color: #ffffff;
     padding: 18px 30px;
     font-weight: 900;
