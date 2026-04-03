@@ -22,6 +22,7 @@ body {
     border-bottom: 1px solid #f0f0f0;
     z-index: 1000;
     padding: 10px 0;
+    top: 0; /* Added to ensure it sticks to the very top */
 }
 
 .nav-container {
@@ -75,17 +76,18 @@ body {
     overflow: hidden;
 }
 
-
-
 .vault-page-content {
-    padding: 150px 20px 100px;
+    padding: 150px 0 100px; /* Changed 20px to 0 to make background touch the screen edges */
+    background: #D8E5F3; 
     background: linear-gradient(180deg, #D8E5F3 0%, #FFFFFF 100%);
     min-height: 100vh;
+    width: 100%; /* Ensures full width */
 }
 
 .vault-container {
     max-width: 900px;
     margin: 0 auto;
+    padding: 0 20px; /* Moved the 20px padding here so content doesn't touch edges, but background does */
     display: flex; /* Ensures vertical stacking */
     flex-direction: column;
     align-items: center; /* Centers children like the image-container and form */
@@ -200,17 +202,34 @@ body {
     background: white;
 }
 
+/* STYLED SECURE BUTTON */
 .vault-submit {
     width: 100%;
     margin-top: 20px;
-    margin-bottom: 50px; /* Added spacing to avoid touching footer */
+    margin-bottom: 50px;
+    padding: 18px;
+    background:  #E67E22;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 13px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vault-submit:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
 }
 
 /* RESPONSIVE UPDATES */
 @media (max-width: 768px) {
     .measurement-form { 
-        padding: 30px 20px; 
+        padding: 30px 15px; /* Sightly reduced to prevent horizontal scroll */
     }
     
     /* This fix ensures inputs stack vertically on mobile */
@@ -220,7 +239,8 @@ body {
     }
 
     .vault-page-content {
-        padding-top: 100px; /* Moves content down so it's not hidden by navbar */
+        padding-top: 100px; 
+        background: #D8E5F3 !important; /* Force background to cover full mobile screen */
     }
 
     .input-group input {
@@ -257,8 +277,6 @@ body {
 .footer-socials a:hover i {
     color: #E67E22 !important; /* Maacatty Orange on hover */
 }
-
-/* Rest of your existing CSS remains the same below */
 
 /* --- INFINITE MARQUEE --- */
 .marquee {
@@ -411,86 +429,4 @@ body {
 @media (min-width: 1025px) {
     .footer-container { flex-direction: row; justify-content: space-between; text-align: left; }
     .footer-branding { align-items: flex-start; }
-}
-/* --- SECURE MY PROFILE BUTTON STYLING --- */
-
-.vault-page-content button,
-#secure-profile-btn {
-    display: block;
-    width: 100%;
-    max-width: 400px; /* Keeps it from stretching too wide on desktop */
-    margin: 30px auto;
-    background: #1a1a1a; /* Matches your base text color */
-    color: #ffffff;
-    padding: 18px 30px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 13px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* Hover Effect: Changes to your brand orange */
-.vault-page-content button:hover,
-#secure-profile-btn:hover {
-    background: #E67E22; 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(230, 126, 34, 0.2);
-}
-
-/* Active/Click effect */
-.vault-page-content button:active,
-#secure-profile-btn:active {
-    transform: translateY(0);
-}
-
-/* Responsive adjustment for mobile */
-@media (max-width: 768px) {
-    .vault-page-content button,
-    #secure-profile-btn {
-        width: 90%;
-        padding: 15px 20px;
-    }
-}
-
-/* --- FINAL ALIGNMENT FIX: CENTERED & VISIBLE --- */
-
-/* 1. Ensure the main container stays away from the screen edges */
-.vault-page-content, 
-.blueprint-section {
-    width: 90% !important; /* Leaves a 5% gap on each side so nothing cuts off */
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    display: block !important;
-}
-
-/* 2. Make sure Labels stay inside the 90% container */
-.vault-page-content label {
-    display: block !important;
-    width: 100% !important;
-    text-align: left !important;
-    padding-left: 5px !important; /* Tiny nudge so text isn't touching the line */
-}
-
-/* 3. Make sure Inputs stay inside the 90% container */
-.vault-page-content input {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    box-sizing: border-box !important; /* CRITICAL: Keeps padding INSIDE the width so it won't grow/cut */
-}
-
-/* 4. Center the "Secure My Profile" button exactly */
-.vault-page-content button {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block !important;
 }
