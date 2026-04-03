@@ -412,46 +412,6 @@ body {
     .footer-container { flex-direction: row; justify-content: space-between; text-align: left; }
     .footer-branding { align-items: flex-start; }
 }
-
-/* --- VAULT FORM ALIGNMENT & RESPONSIVENESS --- */
-
-.vault-page-content {
-    max-width: 600px; /* Centers the form on the screen */
-    margin: 0 auto !important;
-    padding: 20px !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers all labels and inputs */
-}
-
-.vault-page-content label {
-    width: 100%;
-    text-align: left;
-    margin-top: 15px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #1a1a1a;
-}
-
-.vault-page-content input {
-    width: 100% !important;
-    max-width: 100%;
-    padding: 15px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px; /* Prevents iOS zoom-in on focus */
-    background: #f9f9f9;
-}
-
-/* Fix for mobile cutting off */
-@media (max-width: 768px) {
-    .vault-page-content {
-        width: 95%;
-        padding: 10px;
-    }
-}
-
 /* --- SECURE MY PROFILE BUTTON STYLING --- */
 
 .vault-page-content button,
@@ -460,7 +420,7 @@ body {
     width: 100%;
     max-width: 400px; /* Keeps it from stretching too wide on desktop */
     margin: 30px auto;
-    background: orange; /* Matches your base text color */
+    background: #1a1a1a; /* Matches your base text color */
     color: #ffffff;
     padding: 18px 30px;
     font-weight: 900;
@@ -495,4 +455,42 @@ body {
         width: 90%;
         padding: 15px 20px;
     }
+}
+
+/* --- FINAL ALIGNMENT FIX: CENTERED & VISIBLE --- */
+
+/* 1. Ensure the main container stays away from the screen edges */
+.vault-page-content, 
+.blueprint-section {
+    width: 90% !important; /* Leaves a 5% gap on each side so nothing cuts off */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    display: block !important;
+}
+
+/* 2. Make sure Labels stay inside the 90% container */
+.vault-page-content label {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    padding-left: 5px !important; /* Tiny nudge so text isn't touching the line */
+}
+
+/* 3. Make sure Inputs stay inside the 90% container */
+.vault-page-content input {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important; /* CRITICAL: Keeps padding INSIDE the width so it won't grow/cut */
+}
+
+/* 4. Center the "Secure My Profile" button exactly */
+.vault-page-content button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
 }
