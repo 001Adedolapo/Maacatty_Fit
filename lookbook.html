@@ -217,24 +217,59 @@
         });
     }
 
-    // --- 6. ADMIN LOGIC ---
+    // --- 6. SECURE ADMIN LOGIC (5-Minute Auto-Logout) ---
     const MASTER_PASS = "Maacatty001";
     const uploadBtn = document.getElementById("upload_widget");
     const adminTrigger = document.querySelector('.footer-bottom p');
-    
-    if (isAdmin()) { uploadBtn.style.display = "flex"; }
+    const INACTIVITY_LIMIT = 5 * 60 * 1000; // 5 minutes in milliseconds
 
-    adminTrigger.addEventListener('click', () => {
-        let entry = prompt("Enter Admin Passcode:");
-        if (entry === MASTER_PASS) {
-            localStorage.setItem("adminAccess", "true");
-            uploadBtn.style.display = "flex";
-            alert("Access Granted.");
-            location.reload(); // Reload to show delete buttons immediately
+    function checkAdminSession() {
+        const adminAccess = localStorage.getItem("adminAccess");
+        const lastActivity = localStorage.getItem("adminLastActivity");
+        const currentTime = new Date().getTime();
+
+        if (adminAccess === "true" && lastActivity) {
+            if (currentTime - lastActivity > INACTIVITY_LIMIT) {
+                // Time has run out! Log them out.
+                localStorage.removeItem("adminAccess");
+                localStorage.removeItem("adminLastActivity");
+                uploadBtn.style.display = "none";
+                console.log("Admin session expired.");
+                return false;
+            } else {
+                // Session is still valid, show the button
+                uploadBtn.style.display = "flex";
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Run the check immediately when the page loads
+    checkAdminSession();
+
+    // Update the "Last Activity" timer whenever they click the upload button
+    uploadBtn.addEventListener("click", () => {
+        if (checkAdminSession()) {
+            localStorage.setItem("adminLastActivity", new Date().getTime());
+            myWidget.open();
+        } else {
+            alert("Session expired. Please log in again.");
         }
     });
 
-    uploadBtn.addEventListener("click", () => myWidget.open());
+    // Triple-tap / Click trigger to login
+    adminTrigger.addEventListener('click', () => {
+        let entry = prompt("Enter Admin Passcode:");
+        if (entry === MASTER_PASS) {
+            const now = new Date().getTime();
+            localStorage.setItem("adminAccess", "true");
+            localStorage.setItem("adminLastActivity", now);
+            uploadBtn.style.display = "flex";
+            alert("Access Granted. Session active for 5 minutes.");
+            location.reload(); 
+        }
+    });
 </script>
 </body>
 </html>
