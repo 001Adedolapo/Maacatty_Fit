@@ -451,3 +451,131 @@ body {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
+
+/* ADMIN UPLOAD BUTTON - HIDDEN BY DEFAULT */
+#upload_widget {
+    display: none; /* Hidden from normal visitors */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    background: #1a1a1a;
+    color: #E67E22; /* Maacatty Orange text */
+    border: 2px solid #E67E22;
+    padding: 15px 25px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+#upload_widget:hover {
+    background: #E67E22;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+#upload_widget {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: #1a1a1a;
+    color: #E67E22;
+    border: 2px solid #E67E22;
+    padding: 20px; /* Bigger touch area for fingers */
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 12px; /* Rounded corners look better on mobile */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+#upload_widget {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10000;
+    background: #1a1a1a;
+    color: #E67E22;
+    border: 2px solid #E67E22;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Circular button */
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CLEAN FLOATING ADMIN BUTTON */
+#upload_widget {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 9999;
+    
+    /* Perfect Circle Dimensions */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    
+    /* Branding: Black and Maacatty Orange */
+    background: #1a1a1a;
+    color: #E67E22;
+    border: 2px solid #E67E22;
+    
+    /* Centering the icon */
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 300;
+    
+    /* Shadows & Animation */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* The Plus Sign */
+#upload_widget::before {
+    content: '+';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Hover Effect: Glows and lifts */
+#upload_widget:hover {
+    transform: translateY(-5px);
+    background: #E67E22;
+    color: #ffffff;
+    box-shadow: 0 15px 30px rgba(230, 126, 34, 0.4);
+}
+
+/* Tooltip text that appears on hover */
+#upload_widget:hover::after {
+    content: 'ADMIN UPLOAD';
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1a1a1a;
+    color: white;
+    padding: 8px 15px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    border-radius: 4px;
+    white-space: nowrap;
+    border: 1px solid #E67E22;
+}
+

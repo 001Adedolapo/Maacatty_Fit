@@ -10,6 +10,9 @@
     
     <script src="https://unpkg.com/lucide@latest"></script>
     
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <link rel="stylesheet" href="lookbook.css">
 </head>
 <body class="lookbook-page bg-maacatty-hero"> 
@@ -33,7 +36,7 @@
             <p class="gallery-desc">"Exquisite Senator wears and Suits tailored to perfection."</p>
         </header>
 
-        <div class="masonry-grid">
+        <div class="masonry-grid" id="main-masonry-grid">
             <div class="look-item tall">
                 <img src="Sen1.jpeg" alt="Senator Style">
                 <div class="look-overlay"><span>The Custard Color</span></div>
@@ -83,29 +86,35 @@
                 <div class="look-overlay"><span>Blue High-Neck Tunic</span></div>
             </div>
         </div>
+
+        <div style="text-align: center; margin: 50px 0;">
+            <button id="upload_widget" class="vault-submit">Add New Design to Lookbook</button>
+        </div>
+
+        <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
         
         <div class="gallery-footer-action">
             <a href="vault.html" class="btn-primary">Book Your Fitting</a>
         </div>
     </main>
 
-      <div class="marquee">
-    <div class="marquee-content">
-        <span>LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED — LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED —</span>
-        <span>LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED — LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED —</span>
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED — LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED —</span>
+            <span>LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED — LIMITED DROP 2026 — WORLDWIDE SHIPPING — QUALITY CRAFTED —</span>
+        </div>
     </div>
-</div>
 
     <section class="newsletter-section">
-    <div class="newsletter-container">
-        <span class="pre-title">The Inner Circle</span>
-        <h2 class="newsletter-title">Be the first to know about new drops and editorials.</h2>
-        <form class="newsletter-form">
-            <input type="email" placeholder="ENTER YOUR EMAIL" required>
-            <button type="submit" class="newsletter-btn">Join</button>
-        </form>
-    </div>
-</section>
+        <div class="newsletter-container">
+            <span class="pre-title">The Inner Circle</span>
+            <h2 class="newsletter-title">Be the first to know about new drops and editorials.</h2>
+            <form class="newsletter-form">
+                <input type="email" placeholder="ENTER YOUR EMAIL" required>
+                <button type="submit" class="newsletter-btn">Join</button>
+            </form>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="footer-container">
@@ -136,32 +145,96 @@
         </div>
     </footer>
 
-    <script>
-        // Initialize Lucide Icons on Load
-        window.addEventListener('load', function() {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+<script>
+    // --- 1. FIREBASE CONFIG ---
+    const firebaseConfig = {
+        apiKey: "AIzaSyDkd2dDJQHQWuAh4RhvdBmvEpXlEU-a3S4",
+        authDomain: "maacatty-fit.firebaseapp.com",
+        projectId: "maacatty-fit",
+        storageBucket: "maacatty-fit.firebasestorage.app",
+        messagingSenderId: "138774570840",
+        appId: "1:138774570840:web:44cb124ba3ff42f31f272d"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // --- 2. DYNAMIC GRID LOADER + DELETE BUTTON ---
+    const masonryGrid = document.getElementById('main-masonry-grid');
+    const isAdmin = () => localStorage.getItem("adminAccess") === "true";
+
+    db.collection("lookbook_images").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+        // Clear dynamically added items to prevent double-rendering on refresh
+        document.querySelectorAll('.dynamic-item').forEach(item => item.remove());
+
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            const newHTML = `
+                <div class="look-item dynamic-item">
+                    <img src="${data.url}" alt="New Arrival">
+                    <div class="look-overlay">
+                        <span>New Arrival</span>
+                        ${isAdmin() ? `<button onclick="deleteImage('${doc.id}')" style="background: rgba(255,0,0,0.7); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-top: 10px; font-size: 12px;">Delete</button>` : ''}
+                    </div>
+                </div>`;
+            masonryGrid.insertAdjacentHTML('beforeend', newHTML);
         });
+    });
 
-        // Hamburger Menu Logic
-        const mobileMenuBtn = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('mobile-active');
-                const icon = mobileMenuBtn.querySelector('i');
-                if (navLinks.classList.contains('mobile-active')) {
-                    icon.setAttribute('data-lucide', 'x');
-                } else {
-                    icon.setAttribute('data-lucide', 'menu');
-                }
-                lucide.createIcons(); 
-            });
+    // --- 3. DELETE FUNCTION ---
+    window.deleteImage = function(docId) {
+        if (confirm("Remove this design from the lookbook?")) {
+            db.collection("lookbook_images").doc(docId).delete()
+            .then(() => alert("Deleted successfully!"))
+            .catch((error) => console.error("Error removing document: ", error));
         }
-    </script>
+    };
 
+    // --- 4. CLOUDINARY WIDGET ---
+    var myWidget = cloudinary.createUploadWidget({
+        cloudName: 'dtr7wtikl', 
+        uploadPreset: 'maacatty fit',
+        tags: ['lookbook_2026'] 
+    }, (error, result) => { 
+        if (!error && result && result.event === "success") { 
+            db.collection("lookbook_images").add({
+                url: result.info.secure_url,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => { alert("Success! Style added."); });
+        }
+    });
+
+    // --- 5. UI LOGIC (Hamburger & Icons) ---
+    window.addEventListener('load', () => { if (typeof lucide !== 'undefined') lucide.createIcons(); });
+
+    const mobileMenuBtn = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.setAttribute('data-lucide', navLinks.classList.contains('mobile-active') ? 'x' : 'menu');
+            lucide.createIcons(); 
+        });
+    }
+
+    // --- 6. ADMIN LOGIC ---
+    const MASTER_PASS = "Maacatty001";
+    const uploadBtn = document.getElementById("upload_widget");
+    const adminTrigger = document.querySelector('.footer-bottom p');
     
+    if (isAdmin()) { uploadBtn.style.display = "flex"; }
+
+    adminTrigger.addEventListener('click', () => {
+        let entry = prompt("Enter Admin Passcode:");
+        if (entry === MASTER_PASS) {
+            localStorage.setItem("adminAccess", "true");
+            uploadBtn.style.display = "flex";
+            alert("Access Granted.");
+            location.reload(); // Reload to show delete buttons immediately
+        }
+    });
+
+    uploadBtn.addEventListener("click", () => myWidget.open());
+</script>
 </body>
 </html>

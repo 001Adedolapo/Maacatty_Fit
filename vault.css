@@ -418,7 +418,7 @@ body {
     .feature-grid { grid-template-columns: 1fr; width: 100%; }
     .hero-image { order: -1; }
     
-    .hero-slider-wrapper { height: 50vh; } 
+    .hero-slider-wrapper { height: 50vh; } fj m
     
     .slider-dots {
         top: auto;
