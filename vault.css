@@ -431,3 +431,36 @@ body {
     .footer-branding { align-items: flex-start; }
 }
 
+/* 1. This prevents padding from 'stretching' the container off-screen */
+* {
+    box-sizing: border-box;
+}
+
+/* 2. Target the main container where your form lives */
+.gallery-container, 
+.vault-container, 
+form {
+    width: 100%;
+    max-width: 600px; /* Keeps it clean on desktop */
+    margin: 0 auto;
+    padding-left: 25px !important;  /* This is the magic line that stops the cutting */
+    padding-right: 25px !important;
+    display: block;
+}
+
+/* 3. Ensure the labels align properly now that there is padding */
+label {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* 4. Make sure inputs don't try to go outside that padding */
+input {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    margin-top: 5px;
+}
