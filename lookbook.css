@@ -579,3 +579,22 @@ body {
     border: 1px solid #E67E22;
 }
 
+/* This ensures padding doesn't break your layout width */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Add a safety margin to the whole page so nothing touches the edges */
+body {
+    padding-left: 15px; 
+    padding-right: 15px;
+}
+
+/* Specifically for your form labels */
+label {
+    display: block;
+    margin-left: 5px; /* Give the text a tiny bit of breathing room */
+    text-align: left;
+}
