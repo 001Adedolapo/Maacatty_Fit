@@ -431,28 +431,25 @@ body {
     .footer-branding { align-items: flex-start; }
 }
 
-/* --- MOBILE FIX --- */
-@media screen and (max-width: 480px) {
-    /* 1. Force the main container to stay inside the screen */
-    .vault-container, 
-    .form-wrapper, 
-    main {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 10px 20px !important; /* This creates the 'safe gap' on the left and right */
-        box-sizing: border-box !important;
-    }
+/* Target ONLY the vault/form area, leaving the header alone */
+.gallery-container, .vault-form-section {
+    width: 100%;
+    padding-left: 20px !important;  /* This stops the 'F' and 'P' from being sliced */
+    padding-right: 20px !important;
+    margin-top: 20px; 
+    box-sizing: border-box;
+}
 
-    /* 2. Fix the 'Left-Slice' by ensuring the form itself has padding */
-    form {
-        width: 100% !important;
-        padding: 0 !important;
-    }
+/* Ensure inputs don't stretch wider than the screen */
+input, select, .look-item {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    /* 3. Make sure the labels and inputs don't try to be wider than the phone */
-    label, input, select {
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        display: block !important;
-    }
+/* Fix for the labels specifically */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
 }
