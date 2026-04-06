@@ -431,25 +431,3 @@ body {
     .footer-branding { align-items: flex-start; }
 }
 
-/* Target ONLY the vault/form area, leaving the header alone */
-.gallery-container, .vault-form-section {
-    width: 100%;
-    padding-left: 20px !important;  /* This stops the 'F' and 'P' from being sliced */
-    padding-right: 20px !important;
-    margin-top: 20px; 
-    box-sizing: border-box;
-}
-
-/* Ensure inputs don't stretch wider than the screen */
-input, select, .look-item {
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Fix for the labels specifically */
-label {
-    display: block;
-    text-align: left;
-    margin-bottom: 8px;
-}
