@@ -431,3 +431,28 @@ body {
     .footer-branding { align-items: flex-start; }
 }
 
+/* --- MOBILE FIX --- */
+@media screen and (max-width: 480px) {
+    /* 1. Force the main container to stay inside the screen */
+    .vault-container, 
+    .form-wrapper, 
+    main {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 10px 20px !important; /* This creates the 'safe gap' on the left and right */
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Fix the 'Left-Slice' by ensuring the form itself has padding */
+    form {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* 3. Make sure the labels and inputs don't try to be wider than the phone */
+    label, input, select {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        display: block !important;
+    }
+}
